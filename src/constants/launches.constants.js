@@ -1,0 +1,9 @@
+const launchesConstants = {
+    GET_ALL_LAUNCHES_REQUEST: 'GET_ALL_LAUNCHES_REQUEST',
+    GET_ALL_LAUNCHES_SUCCESS: 'GET_ALL_LAUNCHES_SUCCESS',
+    GET_ALL_LAUNCHES_FAILURE: 'GET_ALL_LAUNCHES_FAILURE',
+  
+  };
+  
+  export default launchesConstants;
+  
