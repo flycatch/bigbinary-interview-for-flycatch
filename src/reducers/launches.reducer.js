@@ -1,6 +1,6 @@
 import { expenseConstants, launchesConstants } from "../constants";
 const initialState = {
-  launches: "",
+  launches:  {filght_nnumber:1},
   launchesById: {},
 };
 export const allLaunches = (state = initialState, action) => {
@@ -13,7 +13,7 @@ export const allLaunches = (state = initialState, action) => {
     case launchesConstants.GET_ALL_LAUNCHES_SUCCESS:
       return {
         ...state,
-        launches: action.launches.data,
+        launches: action.launchesData,
         Loading: false,
       };
     case launchesConstants.GET_ALL_LAUNCHES_FAILURE:

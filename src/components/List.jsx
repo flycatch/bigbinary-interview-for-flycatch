@@ -3,7 +3,12 @@ import {
     Row, Col, Table, Card, Tag,
   } from 'antd';
 
-const List = () => {
+const List = (allLaunches) => {
+    debugger
+    console.log("the data", allLaunches.launches)
+    // const data =  allLaunches && allLaunches.launches.map((data) => {
+    //     console.log("dta", data.flight_number)
+    // })
 
     const dataSource = [
         {

@@ -14,11 +14,13 @@ const launchesList = () => {
   
     return (dispatch) => {
       dispatch(request());
-      launchService.launchList(launchesData).then(
+      launchService.launchList().then(
         (launchesData) => {
+          console.log("the res", launchesData)
           dispatch(success(launchesData));
         },
         (error) => {
+          console.log("the data", error)
           dispatch(failure(error.message));
         },
       );
