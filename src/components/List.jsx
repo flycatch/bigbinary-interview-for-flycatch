@@ -2,6 +2,7 @@ import React from "react";
 import {
   Table,Tag
   } from 'antd';
+  import moment from 'moment'
 
 const List = ({data}) => {
    
@@ -10,12 +11,12 @@ const List = ({data}) => {
 data.launches.map((launch)=>{
 dataSource.push({
 flight_number:launch.flight_number,
-launch_date_utc:launch.launch_date_utc,
+launch_date_utc:moment(launch.launch_date_utc).format('Do MMMM  YYYY, HH:mm'),
 site_name:launch.launch_site.site_name,
 mission:launch.mission_name,
 orbit:launch.rocket.second_stage.payloads[0].orbit,
-launch_success:launch.launch_success===true?  <Tag color="green" style={{borderRadius:"15px"}}>success</Tag>: 
- <Tag  style={{borderRadius:"15px"}}color="red">failed</Tag>,
+launch_success:launch.launch_success===true?  <Tag color="green" style={{borderRadius:"15px",fontWeight:"bolder"}}>success</Tag>: 
+ <Tag  style={{borderRadius:"15px",fontWeight:"bolder"}}color="red">failed</Tag>,
 rocket:launch.rocket.rocket_name
 })
 })

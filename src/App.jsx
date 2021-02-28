@@ -22,7 +22,7 @@ function App() {
     return (
       <div className="App">
        <Header/>
-     <List data={allLaunches}/> 
+     <List data={allLaunches} /> 
       </div>
     );
 }
