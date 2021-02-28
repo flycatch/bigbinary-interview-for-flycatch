@@ -12,15 +12,17 @@ function App() {
   useEffect(() => {
     dispatch(
       launchesActions.launchesList())
-  })
+  },[]);
 
-  const allLaunches = useSelector((state) =>  state.launchesList)
-  // allLaunches && console.log("the res", allLaunches)
-  // const {launches, Loading} = allLaunches
+  const allLaunches =useSelector((state) =>  state.allLaunches)
+  const {launches}=allLaunches;
+
+  // const {launches}= allLaunches;
+  // console.log('launchel',launches);
     return (
       <div className="App">
        <Header/>
-     <List allLaunches={allLaunches}/> 
+     <List data={allLaunches}/> 
       </div>
     );
 }

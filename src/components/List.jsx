@@ -1,42 +1,43 @@
 import React from "react";
 import {
-    Row, Col, Table, Card, Tag,
+  Table,Tag
   } from 'antd';
 
-const List = (allLaunches) => {
-    debugger
-    console.log("the data", allLaunches.launches)
-    // const data =  allLaunches && allLaunches.launches.map((data) => {
-    //     console.log("dta", data.flight_number)
-    // })
-
-    const dataSource = [
-        {
-          no: '1',
-          launched: 'Mike',
-          location: 32,
-          mission: '10 Downing Street',
-          orbit: "mars",
-          status:"failed",
-          rocket:"V1"
-        },
-      ];
-      
+const List = ({data}) => {
+   
+  const dataSource=[];
+   const formatDataSource = (data)=>{
+data.launches.map((launch)=>{
+dataSource.push({
+flight_number:launch.flight_number,
+launch_date_utc:launch.launch_date_utc,
+site_name:launch.launch_site.site_name,
+mission:launch.mission_name,
+orbit:launch.rocket.second_stage.payloads[0].orbit,
+launch_success:launch.launch_success===true?  <Tag color="green" style={{borderRadius:"15px"}}>success</Tag>: 
+ <Tag  style={{borderRadius:"15px"}}color="red">failed</Tag>,
+rocket:launch.rocket.rocket_name
+})
+})
+   }
+   if(data.launches.length>15){
+     formatDataSource(data);
+   }
       const columns = [
         {
           title: 'No',
-          dataIndex: 'no',
+          dataIndex: 'flight_number',
           key: 'name',
         },
         {
           title: 'Launched',
-          dataIndex: 'launched',
-          key: 'age',
+          dataIndex: 'launch_date_utc',
+          key: 'Launched',
         },
         {
           title: 'Location',
-          dataIndex: 'location',
-          key: 'address',
+          dataIndex: 'site_name',
+          key: 'Location',
         },
         {
             title: 'Mission',
@@ -50,7 +51,7 @@ const List = (allLaunches) => {
           },
           {
             title: 'Launched Status',
-            dataIndex: 'status',
+            dataIndex: 'launch_success',
             key: 'address',
           },
           {
