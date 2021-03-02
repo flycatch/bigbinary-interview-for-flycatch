@@ -1,30 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import 'antd/dist/antd.css';
-import Header from "./components/Header";
-import {List} from "./components/index";
-import launchesActions from "./actions/launches.action";
-import { useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import "antd/dist/antd.css";
+import LandingComponent from "./components/LandingComponent";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { createBrowserHistory } from "history";
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(
-      launchesActions.launchesList())
-  },[]);
-
-  const allLaunches =useSelector((state) =>  state.allLaunches)
-  const {launches}=allLaunches;
-
-  // const {launches}= allLaunches;
-  // console.log('launchel',launches);
-    return (
-      <div className="App">
-       <Header/>
-     <List data={allLaunches} /> 
-      </div>
-    );
+  const history = createBrowserHistory();
+  return (
+    <div className="App">
+      <Router history={history}>
+        <Route exact path="/" component={LandingComponent} />
+        <Route path="/:value" component={LandingComponent} />
+      </Router>
+    </div>
+  );
 }
 
 export default App;

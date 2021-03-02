@@ -16,17 +16,65 @@ const launchesList = () => {
       dispatch(request());
       launchService.launchList().then(
         (launchesData) => {
-          console.log("the res", launchesData)
           dispatch(success(launchesData));
         },
         (error) => {
-          console.log("the data", error)
           dispatch(failure(error.message));
         },
       );
     };
   };
+
+
+const launchById=(flight_number)=>{
+  function request() {
+    return { type: launchesConstants.GET_BY_ID_LAUNCH_REQUEST };
+  }
+  function success(launchesData) {
+    return { type: launchesConstants.GET_BY_ID_LAUNCH_SUCCESS,launchesData };
+  }
+  function failure(error) {
+    return { type: launchesConstants.GET_BY_ID_LAUNCH_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+    launchService.launchById(flight_number).then(
+      (launchesData) => {
+        dispatch(success(launchesData));
+      },
+      (error) => {
+        dispatch(failure(error.message));
+      },
+    );
+  };
+}
+const launchesListByFilter = (value) => {
+  function request() {
+    return { type: launchesConstants.GET_BY_FILTER_LAUNCH_REQUEST };
+  }
+  function success(launchesData) {
+    return { type: launchesConstants.GET_BY_FILTER_LAUNCH_SUCCESS,launchesData };
+  }
+  function failure(error) {
+    return { type: launchesConstants.GET_BY_ID_LAUNCH_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+    launchService.launchByFilter(value).then(
+      (launchesData) => {
+        dispatch(success(launchesData));
+      },
+      (error) => {
+        dispatch(failure(error.message));
+      },
+    );
+  };
+};
   const launchesActions = {
-   launchesList
+   launchesList,
+   launchById,
+   launchesListByFilter
   };
   export default launchesActions;
