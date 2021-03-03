@@ -8,7 +8,11 @@ const FilterLaunches = (props) => {
     <Row className="filter_button">
       <div>
         <FilterOutlined style={{ marginRight: "-7px" }} />
-        <Select style={{ width: 160 }} bordered={false} defaultValue={value}>
+        <Select
+          style={{ width: 160 }}
+          bordered={false}
+          defaultValue={value ? value : "all Launches"}
+        >
           <Option
             style={{ width: 160 }}
             value={() => props.handleFilter("allLaunches")}

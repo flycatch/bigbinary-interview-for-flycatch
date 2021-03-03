@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import { Table, Tag } from "antd";
 import moment from "moment";
 import SingleLaunch from "./SingleLaunch";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import launchesActions from "../actions/launches.action";
 
 const List = ({ data }) => {
+  const { Loading } = data;
+  console.log("loder", Loading);
+  const { value } = useParams();
+  console.log("value", value);
   const dispatch = useDispatch();
   const allLaunches = useSelector((state) => state.allLaunches);
   const { launchesById } = allLaunches;
   const dataSource = [];
   const formatDataSource = (data) => {
-    data.launches.map((launch) => {
+    data.map((launch) => {
       dataSource.push({
         flight_number: launch.flight_number,
         launch_date_utc: moment(launch.launch_date_utc).format(
@@ -40,8 +45,21 @@ const List = ({ data }) => {
       });
     });
   };
-  if (data.launches.length) {
-    formatDataSource(data);
+  if (
+    data.launches.length &&
+    (!value || value === "allLaunches" || value === "upcoming")
+  ) {
+    formatDataSource(data.launches);
+  } else if (data.launches.length && value === "success") {
+    let successData = data.launches.filter(
+      (launch) => launch.launch_success === true
+    );
+    formatDataSource(successData);
+  } else if (data.launches.length && value === "failed") {
+    let failedData = data.launches.filter(
+      (launch) => launch.launch_success === false
+    );
+    formatDataSource(failedData);
   }
   const [item, setItem] = useState();
   const [visible, setVisible] = useState(false);
@@ -119,7 +137,8 @@ const List = ({ data }) => {
         handleOk={handleOk}
         visible={visible}
       />
-      <Table dataSource={dataSource} columns={getColumns()} />
+
+      <Table dataSource={dataSource} columns={getColumns()} loading={Loading} />
     </div>
   );
 };

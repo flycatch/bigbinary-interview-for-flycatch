@@ -44,7 +44,7 @@ height: 32px;
   flex-direction: column;
   /* align-items: flex-start; */
   padding: 0px;
-  
+  height: fit-content;
   position: absolute;
   width: 952px;
   height: 676px;
@@ -458,4 +458,21 @@ height: 16px;
 right: 243px;
 top: 120px;
 
+}
+
+.spinner {
+  display: inline-block;
+  font-size:4em;
+  height: 1em;
+  line-height: 1;
+  margin: .5em;
+  animation: anim-rotate 2s infinite linear;
+  color: #fff;
+  text-shadow: 0 0 .25em rgba(255,255,255, .3);
+}
+.spinner--steps2 {
+  animation: anim-rotate 1s infinite steps(12);
+}
+.icon-spinner-7:before {
+  content: "\e006";
 }

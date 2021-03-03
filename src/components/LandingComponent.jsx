@@ -8,14 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 import FilterLaunches from "./FilterLaunches";
 
 export const LandingComponent = () => {
+  const [loader, setLoader] = useState();
   const { value } = useParams();
   const [filterValue, setFilterValue] = useState();
   const dispatch = useDispatch();
   const allLaunches = useSelector((state) => state.allLaunches);
+  const { loading } = allLaunches;
+
   const history = useHistory();
   const handleFilter = (value) => {
     history.push({ pathname: `/${value}` });
-    if (value === "allLaunches") {
+    if (value !== "upcoming") {
       dispatch(launchesActions.launchesList());
     } else {
       dispatch(launchesActions.launchesListByFilter(value));
@@ -27,7 +30,7 @@ export const LandingComponent = () => {
     if (!value) {
       dispatch(launchesActions.launchesList());
     }
-    if (value !== "allLaunches") {
+    if (value === "upcoming") {
       dispatch(launchesActions.launchesListByFilter(value));
       setFilterValue(value);
     } else {
