@@ -138,7 +138,12 @@ const List = ({ data }) => {
         visible={visible}
       />
 
-      <Table dataSource={dataSource} columns={getColumns()} loading={Loading} />
+      <Table
+        dataSource={dataSource}
+        columns={getColumns()}
+        loading={Loading}
+        className="ant-table-wrapper"
+      />
     </div>
   );
 };

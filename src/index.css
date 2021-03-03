@@ -44,10 +44,9 @@ height: 32px;
   flex-direction: column;
   /* align-items: flex-start; */
   padding: 0px;
-  height: fit-content;
+  height: fit-content !important;
   position: absolute;
   width: 952px;
-  height: 676px;
   left: 245px;
   top: 184px;
   
