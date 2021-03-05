@@ -53,6 +53,23 @@ export const allLaunches = (state = initialState, action) => {
           ...state,
           error: action.error,
         };
+        case launchesConstants.GET_BY_DATE_FILTER_LAUNCH_REQUEST:
+          return{
+            ...state,
+            Loading:true
+          }
+          case launchesConstants.GET_BY_FILTER_LAUNCH_SUCCESS:
+            return{
+              ...state,
+              launches:action.launchesData,
+              Loading:false
+            }
+            case launchesConstants.GET_BY_DATE_FILTER_LAUNCH_FAILURE:
+              return{
+                ...state,
+                error:action.error,
+                Loading: false
+              }
     default:
       return state;
   }

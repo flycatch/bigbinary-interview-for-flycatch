@@ -9,7 +9,7 @@ export const SingleLaunch = (props) => {
       {props.item.links && (
         <Modal
           visible={props.visible}
-          onCancel={props.handleCancel}
+          onCancel={props.handleCancel} 
           onOk={false}
           footer={false}
         >

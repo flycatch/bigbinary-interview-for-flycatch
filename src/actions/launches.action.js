@@ -72,9 +72,32 @@ const launchesListByFilter = (value) => {
     );
   };
 };
+const launchesFilterByDate =  (startDate, endDate, date) => {
+  function request() {
+    return { type: launchesConstants.GET_BY_DATE_FILTER_LAUNCH_REQUEST };
+  }
+  function success(launchesData) {
+    return { type: launchesConstants.GET_BY_FILTER_LAUNCH_SUCCESS,launchesData };
+  }
+  function  failure(error) {
+    return { type: launchesConstants.GET_BY_DATE_FILTER_LAUNCH_FAILURE, error };
+  }
+  return (dispatch) => {
+    dispatch(request());
+    launchService.launchByDateFilter(startDate,endDate,date).then(
+      (launchesData) => {
+     dispatch(success(launchesData))
+      },
+      (error) => {
+        dispatch(failure(error.message))
+      }
+    )
+  }
+}
   const launchesActions = {
    launchesList,
    launchById,
-   launchesListByFilter
+   launchesListByFilter,
+   launchesFilterByDate
   };
   export default launchesActions;

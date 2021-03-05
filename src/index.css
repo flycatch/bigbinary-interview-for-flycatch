@@ -283,8 +283,8 @@ align-items: center;
 padding: 0px;
 
 position: static;
-width: 238px;
-height: 72px;
+/* width: 238px;
+height: 72px; */
 left: 32px;
 top: 32px;
 
@@ -474,4 +474,12 @@ top: 120px;
 }
 .icon-spinner-7:before {
   content: "\e006";
+}
+
+.filter{
+  margin-left: 17%;
+    margin-top: 2%;
+}
+.ant-modal-body{
+  font-size: 19px  !important;
 }
